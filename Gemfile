@@ -24,6 +24,10 @@ group :development do
   gem 'annotate'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 
 gem 'jquery-rails'
 
