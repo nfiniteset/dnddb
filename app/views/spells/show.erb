@@ -1,0 +1,8 @@
+<h1><%= @spell.name %></h1>
+<a href="/spells/<%= @spell.id - 1 %>">Previous</a>
+<a href="/spells/<%= @spell.id + 1 %>">Next</a>
+<ul>
+  <% @spell.domains.each do |d| %>
+  <li><span class="domain"><%= d.name %></span> <span class="level"><%= d.level %></span></li>
+  <% end %>
+</ul>

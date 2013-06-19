@@ -1,0 +1,5 @@
+<ul>
+  <% @spells.each do | spell |%>
+  <li><a href="<%= spell_path(spell) %>"><%= spell.name %></a></li>
+  <% end %>
+</ul>
