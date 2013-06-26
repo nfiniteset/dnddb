@@ -91,12 +91,6 @@ ActiveRecord::Schema.define(:version => 20130614053555) do
 
   add_index "class_tables", ["name"], :name => "class_table_name_index"
 
-  create_table "domain_levels", :force => true do |t|
-    t.integer "spell_id"
-    t.string  "name"
-    t.integer "level"
-  end
-
   create_table "domains", :force => true do |t|
     t.string "name",           :limit => nil, :null => false
     t.text   "granted_powers"
@@ -260,6 +254,16 @@ ActiveRecord::Schema.define(:version => 20130614053555) do
   end
 
   add_index "skills", ["name"], :name => "skill_name_index"
+
+  create_table "spell_domains", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "spell_levels", :force => true do |t|
+    t.integer "spell_id"
+    t.integer "spell_domain_id"
+    t.integer "level"
+  end
 
   create_table "spells", :force => true do |t|
     t.string "name",                       :limit => nil, :null => false

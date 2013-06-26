@@ -38,5 +38,6 @@
 #
 
 class Spell < ActiveRecord::Base
-  has_many :domains, class_name: 'DomainLevel'
+  has_many :spell_levels
+  has_many :spell_domains, through: :spell_levels
 end
