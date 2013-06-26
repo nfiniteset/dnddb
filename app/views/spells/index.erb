@@ -1,5 +1,23 @@
-<ul>
-  <% @spells.each do | spell |%>
-  <li><a href="<%= spell_path(spell) %>"><%= spell.name %></a></li>
+
+<select>
+  <% @spell_domains.each do |d| %>
+  <option value="<%= d.id %>"><%= d.name %></option>
   <% end %>
-</ul>
+</select>
+
+<h1><%= @spell_domain.name %> Spells</h1>
+
+<div class="row">
+  <div class="span3">
+    <ul class="nav nav-list">
+    <% [0,1,2,3,4,5,6,7,8,9].each do |level| %>
+      <% if @spell_domain.spells_at_level(level).count > 0 %>
+        <li class="nav-header">Level <%= level %></li>
+        <% @spell_domain.spells_at_level(level).each do | spell |%>
+        <li><a href="<%= spell_path(spell) %>"><%= spell.name %></a></li>
+        <% end %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>

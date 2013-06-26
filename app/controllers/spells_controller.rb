@@ -1,6 +1,7 @@
 class SpellsController < ApplicationController
   def index
-    @spells = Spell.all
+    @spell_domains = SpellDomain.order(:name)
+    @spell_domain = SpellDomain.find(params[:domain_id])
   end
 
   def show
