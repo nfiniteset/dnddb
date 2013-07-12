@@ -1,0 +1,46 @@
+class SpellSerializer < ActiveModel::Serializer
+  attributes :name, :altname,
+    :school,
+    :subschool,
+    :descriptor,
+    :spellcraft_dc,
+    :level,
+    :components,
+    :casting_time,
+    :range,
+    :target,
+    :area,
+    :effect,
+    :duration,
+    :saving_throw,
+    :spell_resistance,
+    :short_description,
+    :to_develop,
+    :material_components,
+    :arcane_material_components,
+    :focus,
+    :xp_cost,
+    :arcane_focus,
+    :wizard_focus,
+    :verbal_components,
+    :sorcerer_focus,
+    :bard_focus,
+    :cleric_focus,
+    :druid_focus,
+    :reference
+
+  def level
+    levels = object.level.split(/,/)
+
+    spell_levels = levels.map! do |l|
+      spell_classes, level = l.split(' ')
+      spell_classes = spell_classes.split('/')
+      spell_classes.map do |spell_class|
+        { spell_class => level }
+      end
+    end
+
+    spell_levels.flatten
+  end
+
+end
