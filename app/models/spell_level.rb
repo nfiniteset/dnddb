@@ -2,15 +2,19 @@
 #
 # Table name: spell_levels
 #
-#  id              :integer          not null, primary key
-#  spell_id        :integer
-#  spell_domain_id :integer
-#  level           :integer
+#  id               :integer          not null, primary key
+#  spell_id         :integer
+#  spell_class_id   :integer
+#  spell_class_type :string(255)
+#  level            :integer
 #
 
 class SpellLevel < ActiveRecord::Base
-  belongs_to :spell_domain
+  belongs_to :spell_class, polymorphic: true
   belongs_to :spell
 
-  attr_accessible :level, :spell_domain
+  def spells_at_level(level)
+    spell_levels.where(level: level).map{ |l| l.spell }
+  end
+
 end

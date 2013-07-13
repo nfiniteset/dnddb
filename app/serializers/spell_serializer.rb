@@ -32,15 +32,14 @@ class SpellSerializer < ActiveModel::Serializer
   def level
     levels = object.level.split(/,/)
 
-    spell_levels = levels.map! do |l|
+    levels.reduce({}) do |memo, l|
       spell_classes, level = l.split(' ')
       spell_classes = spell_classes.split('/')
-      spell_classes.map do |spell_class|
-        { spell_class => level }
+      spell_classes.each do |spell_class|
+        memo[spell_class] = level
       end
+      memo
     end
-
-    spell_levels.flatten
   end
 
 end

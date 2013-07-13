@@ -19,5 +19,6 @@
 #
 
 class Domain < ActiveRecord::Base
-
+  has_many :spell_levels, as: :spell_class
+  has_many :spells, through: :spell_levels
 end

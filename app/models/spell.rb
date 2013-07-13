@@ -39,5 +39,5 @@
 
 class Spell < ActiveRecord::Base
   has_many :spell_levels
-  has_many :spell_domains, through: :spell_levels
+  has_many :spell_classes, through: :spell_levels
 end
